@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CYC Anniversary Landing</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    /* Landing Section */
+    .landing {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      background: linear-gradient(to right, rgba(0,74,173,0.9), rgba(0,119,255,0.9));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      z-index: 1;
+    }
+
+    .landing h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin: 0;
+      animation: fadeInDown 1.5s ease;
+    }
+
+    .landing p {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 1rem 0 2rem;
+      animation: fadeInUp 2s ease;
+    }
+
+    .landing a {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #004aad;
+      background: #FFD700;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      animation: fadeIn 2.5s ease;
+    }
+
+    .landing a:hover {
+      background: #ffc107;
+      transform: scale(1.05);
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Confetti Canvas */
+    #confetti {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Confetti Background -->
+  <canvas id="confetti"></canvas>
+
+  <!-- Landing Content -->
+  <div class="landing">
+    <h1> WELCOME TO THE COMMONWEALTH YOUTH COUNCIL NEW EXECUTIVES' ONE YEAR ANNIVERSARY </h1>
+    
+    <a href="index.html">Get Started</a> <!-- Change link to your main page -->
+  </div>
+
+  <!-- Confetti Script -->
+  <script>
+    const confettiCanvas = document.getElementById("confetti");
+    const ctx = confettiCanvas.getContext("2d");
+    confettiCanvas.width = window.innerWidth;
+    confettiCanvas.height = window.innerHeight;
+
+    const confettiPieces = [];
+    const colors = ["#FFD700", "#FF4500", "#00FF7F", "#1E90FF", "#FF69B4"];
+
+    for (let i = 0; i < 200; i++) {
+      confettiPieces.push({
+        x: Math.random() * confettiCanvas.width,
+        y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+        w: 8,
+        h: 14,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        speed: Math.random() * 3 + 2,
+        rotate: Math.random() * 360
+      });
+    }
+
+    function drawConfetti() {
+      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      confettiPieces.forEach(p => {
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotate * Math.PI / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+        ctx.restore();
+
+        p.y += p.speed;
+        p.rotate += 2;
+        if (p.y > confettiCanvas.height) {
+          p.y = -20;
+          p.x = Math.random() * confettiCanvas.width;
+        }
+      });
+      requestAnimationFrame(drawConfetti);
+    }
+    drawConfetti();
+
+    window.addEventListener("resize", () => {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    });
+  </script>
+
+</body>
+</html>

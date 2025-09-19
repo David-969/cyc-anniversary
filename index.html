@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CYC 1-Year Anniversary</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation Library -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      background: #f9f9fb;
+      color: #333;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    nav {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: #004aad;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    nav .logo {
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      flex: 1;
+      justify-content: center;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #FFD700;
+    }
+
+    /* Mobile Menu */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      margin: 4px 0;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: #004aad;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 1rem;
+        border-radius: 8px 0 0 8px;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    /* Header */
+    header {
+      position: relative;
+      background: linear-gradient(to right, rgba(0,74,173,0.85), rgba(0,119,255,0.85)),
+                  url("https://i.ibb.co/SmxCM4P/confetti-bg.jpg") center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+      padding: 6rem 2rem;
+      overflow: hidden;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      font-weight: 700;
+      opacity: 0.95;
+    }
+
+    canvas#confetti {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    header .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Sections */
+    section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #004aad;
+      font-size: 2rem;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .timeline-item {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .timeline-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      background: #004aad;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    footer p {
+      margin: 0.5rem 0;
+    }
+
+    @media (min-width: 768px) {
+      .timeline {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">CYC Anniversary</div>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul id="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#media">Media</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li class="nav-item">
+        <a class="btn btn-back" href="landing.html">⬅ Back to Landing</a>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header id="home" data-aos="fade-down">
+    <canvas id="confetti"></canvas>
+    <div class="content">
+      <h1>Commonwealth Youth Council</h1>
+      <p>Celebrating One Year of Achievements (2024 - 2025)</p>
+    </div>
+  </header>
+
+  <!-- Intro -->
+  <section id="about" data-aos="fade-up">
+    <h2>Introduction</h2>
+    <p>
+      On October 22, 2025, the Commonwealth Youth Council (CYC) marks one year since the current executives took office. 
+      This anniversary highlights the milestones achieved, challenges overcome, and the bright future ahead for youth empowerment worldwide.
+    </p>
+  </section>
+
+  <!-- Achievements -->
+  <section id="achievements" data-aos="zoom-in">
+    <h2>Highlights & Achievements</h2>
+    <div class="timeline">
+      <div class="timeline-item" data-aos="fade-right">
+        <h3>Youth Empowerment Programs</h3>
+        <p>Launched initiatives reaching over 50,000 young people globally.</p>
+      </div>
+      <div class="timeline-item" data-aos="fade-left">
+        <h3>Leadership Training</h3>
+        <p>Organized 20+ leadership workshops across Commonwealth regions.</p>
+      </div>
+      <div class="timeline-item" data-aos="fade-right">
+        <h3>Policy Advocacy</h3>
+        <p>Successfully influenced youth-friendly policies in multiple nations.</p>
+      </div>
+      <div class="timeline-item" data-aos="fade-left">
+        <h3>Global Partnerships</h3>
+        <p>Strengthened collaborations with NGOs, governments, and youth bodies.</p>
+      </div>
+      <div class="timeline-item" data-aos="fade-left">
+        <h3>Accelerate Action - International Women's Day 2025</h3>
+        <p>The Commonwealth Youth Council (CYC), working with the Programme for Africa Leadership at LSE (PFAL), is organising an event to commemorate International Women’s Day (IWD) on March 8, 2025, on the theme “For all women and girls: Rights, Equality and Empowerment #Accelerate Action.”.</p>
+      </div>
+
+      <div class="timeline-item" data-aos="fade-left">
+        <h3>The Apia Youth Declaration (2024)</h3>
+        <p>Developed at the Commonwealth Youth Forum in October 2024 in Apia, Samoa, this declaration highlights young people’s key priorities and commitments across the Commonwealth. It addresses critical issues such as climate action, economic resilience, gender equality, and youth participation in governance. The document is a roadmap for collective action and collaboration, ensuring youth voices are at the forefront of Commonwealth developm.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Media -->
+  <section id="media" data-aos="fade-up">
+    <h2>Media & Engagement</h2>
+    <p>
+      Over the past year, CYC expanded its digital presence, connecting with millions of youth through social media campaigns, 
+      live webinars, and cross-cultural events.
+    </p>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" data-aos="fade-up">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="https://cycofficial.org/wp-content/uploads/2025/04/IMG_8423-1-1536x1152.jpg" alt="Gallery Image 1">
+      <img src="https://cycofficial.org/wp-content/uploads/2025/04/climate_change_prog.jpg" alt="Gallery Image 2">
+      <img src="https://cycofficial.org/wp-content/uploads/2025/01/CYC-International-Disability-Day-Seminar-1-1536x1281.jpg" alt="Gallery Image 3">
+      <img src="https://cycofficial.org/wp-content/uploads/2025/01/CYC-International-Disability-Day-Seminar-2-1536x1303.jpg" alt="Gallery Image 4">
+      <img src="https://cycofficial.org/wp-content/uploads/2025/01/vhee_IMG-1565-1024x683.jpg" alt="Gallery Image 5">
+      <img src="https://cycofficial.org/wp-content/uploads/2025/01/CYC-Chairperson-Meets-Commonwealth-Sec-General-and-Deputy-Secretary-General-1152x1536.jpg" alt="Gallery Image 6">
+      <img src="https://cycofficial.org/wp-content/uploads/2025/04/IMG_0793-1-1536x864.jpg" alt="Gallery Image 7">
+      <img src="https://cycofficial.org/wp-content/uploads/2025/04/IMG_8542-768x1365.jpg" alt="Gallery Image 8">
+      <img src="https://cycofficial.org/wp-content/uploads/2025/01/OPEY-JOSHUA_cyc-1347x1536.jpg" alt="Gallery Image 9">
+      
+    </div>
+  </section>
+
+  <!-- Looking Ahead -->
+  <section id="looking" data-aos="fade-up">
+    <h2>Looking Ahead</h2>
+    <p>
+      As the journey continues, the CYC remains committed to championing youth voices, addressing global challenges, 
+      and creating lasting impact across the Commonwealth.
+    </p>
+  </section>
+
+  <!-- Closing Note -->
+  <section id="closing" data-aos="fade-up">
+    <h2>Closing Note</h2>
+    <p>
+      This milestone is not just a celebration of the past year but a call to action for greater unity, inclusivity, 
+      and innovation in empowering young people everywhere.
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer data-aos="fade-up">
+    <p>© 2025 Commonwealth Youth Council</p>
+  </footer>
+
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: false
+    });
+  </script>
+
+  <!-- Navbar Toggle -->
+  <script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+  </script>
+
+  <!-- Confetti Animation -->
+  <script>
+    const confettiCanvas = document.getElementById("confetti");
+    const ctx = confettiCanvas.getContext("2d");
+    confettiCanvas.width = window.innerWidth;
+    confettiCanvas.height = window.innerHeight;
+
+    const confettiPieces = [];
+    const colors = ["#FFD700", "#FF4500", "#00FF7F", "#1E90FF", "#FF69B4"];
+
+    for (let i = 0; i < 150; i++) {
+      confettiPieces.push({
+        x: Math.random() * confettiCanvas.width,
+        y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+        w: 8,
+        h: 14,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        speed: Math.random() * 3 + 2,
+        rotate: Math.random() * 360
+      });
+    }
+
+    function drawConfetti() {
+      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      confettiPieces.forEach(p => {
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotate * Math.PI / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+        ctx.restore();
+
+        p.y += p.speed;
+        p.rotate += 2;
+        if (p.y > confettiCanvas.height) {
+          p.y = -20;
+          p.x = Math.random() * confettiCanvas.width;
+        }
+      });
+      requestAnimationFrame(drawConfetti);
+    }
+    drawConfetti();
+
+    window.addEventListener("resize", () => {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
+
+
+
+
